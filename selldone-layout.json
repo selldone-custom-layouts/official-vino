@@ -1,0 +1,29 @@
+{
+  "name": "Vino Luxury Watches",
+  "shop": "Watchino",
+  "kind": "Luxury watches · single shop",
+  "summary": "Luxury watches with hairline rules: promo strip, mega menu, offers hero, collection tiles, rails, filter bar, gallery product page with service rows, compare, receipt basket.",
+  "live": "https://vino.selldone.shop",
+  "cover": "docs/screenshots/cover.jpg",
+  "screenshots": [
+    "docs/screenshots/desktop-home.jpg",
+    "docs/screenshots/desktop-category.jpg",
+    "docs/screenshots/desktop-product.jpg",
+    "docs/screenshots/desktop-cart.jpg",
+    "docs/screenshots/phone-home.jpg",
+    "docs/screenshots/phone-category.jpg",
+    "docs/screenshots/phone-product.jpg",
+    "docs/screenshots/phone-cart.jpg"
+  ],
+  "tags": [
+    "watches",
+    "luxury",
+    "jewelry",
+    "single-vendor",
+    "light",
+    "rtl"
+  ],
+  "package": "vino-luxury-watches",
+  "base": "selldone/storefront",
+  "status": "draft"
+}

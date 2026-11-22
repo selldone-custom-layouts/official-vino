@@ -1,0 +1,214 @@
+{
+  "$schema": "../../skin.schema.json",
+  "name": "vino",
+  "package": "vino-luxury-watches",
+  "title": "Vino Luxury Watches",
+  "description": "A luxury watch Layout with hairline rules and square-cut corners, laid out like a big pre-owned and new watch dealer: a promo strip for the live reductions, a centred serif wordmark between the department nav (Offers, Watches with a mega menu by collection, brand, price band and movement, Brands, Journal) and a search box, a service strip of delivery facts from the shop's own settings, a dark offers hero, entry tiles, collection photo tiles, product rails with brand, model, one spec line and a monospaced price, editorial cards, brand tiles and the journal. The listing has a centred title, collection chips, a bar of filter buttons from the products' real specifications and a six-column grid; the product page has a gallery with arrows and one row of thumbnails, a buy column with colour swatches and service rows, the specification in the shop's own groups, and an honest 'No reviews yet'. Compare side by side, a receipt-style basket, checkout with map, delivery and payment sheets, order page with chat, account desk. One colour family (Blued steel, Racing green, Burgundy, Bronze or any custom colour), light or dark, from the footer's Theme row; Bodoni Moda over Archivo with tabular monospaced prices; English, German, Spanish, French and Arabic.",
+  "summary": "Luxury watches with hairline rules: promo strip, mega menu, offers hero, collection tiles, rails, filter bar, gallery product page with service rows, compare, receipt basket.",
+  "tagline": "A luxury watch shop with hairline rules, a serif wordmark, monospaced prices and the structure of a big watch dealer.",
+  "kind": "Luxury watches · single shop",
+  "tags": [
+    "watches",
+    "luxury",
+    "jewelry",
+    "single-vendor",
+    "light",
+    "rtl"
+  ],
+  "shop": {
+    "name": "Watchino",
+    "id": 8460,
+    "xapi": "watchino",
+    "domain": "vino.selldone.shop",
+    "currency": "USD",
+    "country": "US",
+    "language": "en"
+  },
+  "github": {
+    "org": "selldone-custom-layouts",
+    "repo": "official-vino",
+    "topics": [
+      "selldone",
+      "selldone-layout",
+      "storefront",
+      "vue",
+      "watches",
+      "luxury"
+    ]
+  },
+  "dev": {
+    "port": 9173
+  },
+  "checks": {
+    "product": "709386",
+    "product2": "325697",
+    "category": "/womens-collection-category",
+    "search": "gold",
+    "article": "/blog/how-to-choose-a-luxury-watch-that-truly-fits-you-743551",
+    "compare": "p709386_p325697_p709385",
+    "i18nIgnore": "",
+    "mega": "[aria-controls=vn-mega]",
+    "megaPanel": "#vn-mega",
+    "filterBtn": ".vn-ls-fbtn",
+    "quick": ""
+  },
+  "palettes": {
+    "brand": "steel",
+    "mode": "light",
+    "list": [
+      {
+        "id": "steel",
+        "name": "Blued steel",
+        "seed": "#2F4E8F"
+      },
+      {
+        "id": "green",
+        "name": "Racing green",
+        "seed": "#1F5C46"
+      },
+      {
+        "id": "burgundy",
+        "name": "Burgundy",
+        "seed": "#7A2436"
+      },
+      {
+        "id": "bronze",
+        "name": "Bronze",
+        "seed": "#7A5A1E"
+      }
+    ],
+    "showcaseShops": [
+      {
+        "id": 15740,
+        "name": "bakio"
+      },
+      {
+        "id": 15549,
+        "name": "digini-hzgablru"
+      },
+      {
+        "id": 15645,
+        "name": "molino"
+      },
+      {
+        "id": 8460,
+        "name": "watchino"
+      }
+    ]
+  },
+  "fonts": {
+    "display": {
+      "family": "Bodoni Moda",
+      "google": "Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600",
+      "stack": "\"Bodoni Moda\", \"Noto Sans Arabic\", Didot, Georgia, serif"
+    },
+    "text": {
+      "family": "Archivo",
+      "google": "Archivo:wght@400;500;600;700&family=Azeret+Mono:wght@400;500",
+      "stack": "\"Archivo\", \"Noto Sans Arabic\", \"Segoe UI\", system-ui, sans-serif"
+    },
+    "headingWeight": 500
+  },
+  "shape": {
+    "panel": 6,
+    "inner": 4
+  },
+  "wordmark": {
+    "case": "first",
+    "italic": false,
+    "dot": false,
+    "sub": "none",
+    "weight": 500,
+    "tracking": ".01em",
+    "size": 31
+  },
+  "basket": {
+    "one": "basket",
+    "many": "baskets"
+  },
+  "home": [
+    {
+      "section": "hero",
+      "variant": "split"
+    },
+    {
+      "section": "journal",
+      "variant": "photo",
+      "band": true
+    }
+  ],
+  "photos": {
+    "hero": {
+      "size": [
+        2400,
+        1000
+      ],
+      "art": "none",
+      "note": "a man fastening a watch on the right; left 45% dark: white words"
+    },
+    "hero-phone": {
+      "size": [
+        900,
+        900
+      ],
+      "art": "none",
+      "note": "square crop; the words go under it on a phone"
+    },
+    "story": {
+      "size": [
+        1600,
+        900
+      ],
+      "art": "none",
+      "note": "a watchmaker at the bench (About)"
+    },
+    "boutique": {
+      "size": [
+        1600,
+        900
+      ],
+      "art": "none",
+      "note": "two men at a boutique counter (Ask us, Contact)"
+    },
+    "travel": {
+      "size": [
+        1600,
+        900
+      ],
+      "art": "none",
+      "note": "a traveller at an airport window (Delivery)"
+    },
+    "gift": {
+      "size": [
+        1600,
+        900
+      ],
+      "art": "none",
+      "note": "a watch given as a gift"
+    },
+    "empty": {
+      "size": [
+        1200,
+        900
+      ],
+      "art": "none",
+      "note": "an empty open watch box (404 and empty states)"
+    },
+    "collections": {
+      "size": [
+        900,
+        1200
+      ],
+      "pattern": "col-<slug of the collection title>"
+    }
+  },
+  "loading": {
+    "art": "none"
+  },
+  "splash": {
+    "art": "none"
+  },
+  "words": {
+    "en": {}
+  }
+}
