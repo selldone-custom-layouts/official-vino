@@ -47,7 +47,7 @@
         <router-link v-if="cat" :to="catTo(cat)" class="eyebrow pd-cat"><bdi>{{ catName }}</bdi></router-link>
         <h1 class="pd-h">{{ $product.title }}</h1>
         <p class="pd-u">
-          {{ t("ly.card.per", "Per {unit}", { unit }) }} ·
+          <span v-if="brand" class="vn-pd-brand"><bdi>{{ brand }}</bdi> · </span>
           <a class="pd-rv" href="#tabs" @click.prevent="goReviews">{{ reviewsWord }}</a>
         </p>
 
@@ -177,6 +177,7 @@ import LyIcon from "../LyIcon.vue";
 import LyIcLine from "../ui/LyIcLine.vue";
 import LyPdAdd from "./LyPdAdd.vue";
 import { catOf, catTitle, catTo, ly, money, priceView, unitOf } from "../ly";
+import { brandOf } from "../vino/vn";
 import { deliveryLines, galleryOf, isEnglish, plural } from "./pd";
 import { colourName, dealEnd, moneyOf, swatchBg, variantDimension } from "../../bakini/bakini";
 import { currentCurrency } from "../../region-switcher/region";
@@ -195,6 +196,10 @@ export default {
   },
 
   computed: {
+    /* a watch is one watch: the brand, not a unit, before the reviews link */
+    brand() {
+      return brandOf(this.$product);
+    },
     currency() {
       return currentCurrency();
     },
