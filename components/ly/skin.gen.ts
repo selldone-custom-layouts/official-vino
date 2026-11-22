@@ -156,14 +156,9 @@ export const SKIN = {
   },
   "home": [
     {
-      "section": "hero",
-      "variant": "split",
+      "section": "watches",
+      "variant": "hairline",
       "band": false
-    },
-    {
-      "section": "journal",
-      "variant": "photo",
-      "band": true
     }
   ],
   "photoArt": {

@@ -295,7 +295,7 @@ export default {
       return "all";
     },
     filters() {
-      return this.kind === "category";
+      return this.kind === "category" || this.kind === "all";
     },
     cat() {
       return this.ly.cats.find((c) => c.name === this.categoryName) || null;
@@ -582,7 +582,7 @@ export default {
       return this.ly.products
         .map((p) => {
           const title = String(p.title || "").toLowerCase();
-          const hay = (title + " " + catTitle(catOf(p.category_id)) + " " + Object.values(p.spec || {}).flat().join(" ")).toLowerCase();
+          const hay = (title + " " + String(p.brand || "") + " " + catTitle(catOf(p.category_id)) + " " + Object.values(p.spec || {}).flat().join(" ")).toLowerCase();
           let s = 0;
           for (const w of words) {
             if (title.includes(w)) s += 3;
@@ -609,6 +609,12 @@ export default {
     resetRange() {
       this.min = this.lo;
       this.max = this.hi;
+      /* ?price=lo-hi (the mega menu's price bands) */
+      const m = String(this.$route?.query?.price || "").match(/^([0-9]*)-([0-9]*)$/);
+      if (m && this.hi > this.lo) {
+        if (m[1]) this.min = Math.max(this.lo, Math.min(this.hi, Number(m[1])));
+        if (m[2]) this.max = Math.min(this.hi, Math.max(this.min, Number(m[2])));
+      }
     },
     /* Fewer results than columns: the cards keep their width and the row is centred. */
     fit() {

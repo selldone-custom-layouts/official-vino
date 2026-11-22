@@ -5,6 +5,8 @@
  * sections, inside the photo slots' fallbacks and as the feature icons).
  */
 export const ICONS: Record<string, string> = {
+  truck: "<path d=\"M3 6h11v10H3zM14 10h4l3 3v3h-7\"/><circle cx=\"7\" cy=\"18\" r=\"2\"/><circle cx=\"17\" cy=\"18\" r=\"2\"/>",
+  seal: "<path d=\"M12 3l2.4 1.8 3-.2.9 2.9 2.4 1.8-1 2.8 1 2.8-2.4 1.8-.9 2.9-3-.2L12 21l-2.4-1.8-3 .2-.9-2.9-2.4-1.8 1-2.8-1-2.8 2.4-1.8.9-2.9 3 .2Z\"/><path d=\"m8.6 12 2.3 2.3 4.5-4.6\"/>",
   bag: "<path d=\"M5.5 8h13l-1 12.2a1 1 0 0 1-1 .8H7.5a1 1 0 0 1-1-.8z\"/><path d=\"M9 10V6.8a3 3 0 0 1 6 0V10\"/>",
   search: "<circle cx=\"11\" cy=\"11\" r=\"6.5\"/><path d=\"m20 20-4.2-4.2\"/>",
   user: "<circle cx=\"12\" cy=\"8.5\" r=\"3.8\"/><path d=\"M4.8 20c.9-3.6 3.7-5.6 7.2-5.6s6.3 2 7.2 5.6\"/>",

@@ -128,13 +128,8 @@
   },
   "home": [
     {
-      "section": "hero",
-      "variant": "split"
-    },
-    {
-      "section": "journal",
-      "variant": "photo",
-      "band": true
+      "section": "watches",
+      "variant": "hairline"
     }
   ],
   "photos": {

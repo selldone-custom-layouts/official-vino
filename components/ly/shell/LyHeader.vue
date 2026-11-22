@@ -26,94 +26,43 @@
   <div v-if="!$store.getters.getIsNative" class="ly ly-hdrwrap">
     <a class="skip" href="#main" @click.prevent="skip">{{ t("ly.hdr.skip", "Skip to content") }}</a>
 
-    <div class="topbar">
-      <div class="wrap tb-in">
-        <ul v-if="facts.ready" :aria-label="t('ly.hdr.facts', 'Shop facts')" class="tb-l">
-          <li v-if="openLine">{{ openLine }}</li>
-          <li v-if="facts.gateway?.name">{{ facts.gateway.name }}</li>
-          <li v-if="facts.pickup && street">{{ t("ly.hdr.pickupAt", "Pickup at {street}", { street }) }}</li>
-        </ul>
-        <ul :aria-label="t('ly.hdr.contact', 'Contact')" class="tb-r">
-          <li v-if="regionOn" class="tb-rg">
-            <button
-              :key="regionKey"
-              :aria-expanded="is('rgp') ? 'true' : 'false'"
-              :aria-label="t('ly.hdr.regionAria', 'Language and currency: {value}', { value: regionShort })"
-              aria-controls="rgp"
-              class="rg-pill rs-pick__btn"
-              type="button"
-              @click="toggle('rgp', $event)"
-            >
-              <ly-icon name="globe" /><span dir="ltr">{{ regionShort }}</span><ly-icon cls="chev" name="down" />
-            </button>
-          </li>
-          <li v-if="facts.ready && facts.phone" class="tb-tel"><a :href="tel" dir="ltr">{{ facts.phone }}</a></li>
-          <li v-if="facts.ready && facts.email" class="tb-mail"><a :href="'mailto:' + facts.email">{{ facts.email }}</a></li>
-        </ul>
-      </div>
+    <div v-if="promoOn" class="vn-promo">
+      <router-link :to="dealsTo" class="vn-promo-a"
+        ><b>{{ t("vino.hdr.reduced", "Reduced prices") }}</b><span aria-hidden="true" class="sep">|</span><span>{{ t("vino.hdr.upTo", "Up to {off}% off selected watches", { off: offMax }) }}</span></router-link
+      >
+      <button :aria-label="t('vino.hdr.dismiss', 'Dismiss')" class="x" type="button" @click="shutPromo"><ly-icon name="close" /></button>
     </div>
 
-    <header id="hdr" class="hdr">
-      <div class="wrap hdr-in">
-        <button
-          :aria-expanded="is('menu') ? 'true' : 'false'"
-          :aria-label="t('ly.hdr.menu', 'Menu')"
-          aria-controls="menu"
-          class="ibtn menu-btn"
-          type="button"
-          @click="toggle('menu', $event)"
-        >
-          <ly-icon name="menu" />
-        </button>
-
-        <nav :aria-label="t('ly.hdr.main', 'Main')" class="nav">
-          <ul>
-            <li class="has-dd">
-              <button :aria-expanded="is('dd-shop') ? 'true' : 'false'" aria-controls="dd-shop" class="nav-a" type="button" @click="toggle('dd-shop', $event)">
-                {{ t("ly.hdr.shop", "Shop") }}<ly-icon cls="chev" name="down" />
-              </button>
-              <div id="dd-shop" :class="['dd', { open: is('dd-shop') }]">
-                <div class="dd-main">
-                <p class="dd-h">{{ t("ly.hdr.collections", "The collections") }}</p>
-                <ul class="dd-list">
-                  <li v-for="c in cats" :key="c.id">
-                    <router-link :to="catTo(c)">
-                      <span class="dd-th"><img v-if="topImg(c)" :src="topImg(c)" alt="" loading="lazy" /></span>
-                      <span class="dd-tx"
-                        ><b><bdi>{{ catTitle(c) }}</bdi></b><small v-if="fromPrice(c)">{{ t("ly.hdr.from", "From {price}", { price: fromPrice(c) }) }}</small></span
-                      >
-                    </router-link>
-                  </li>
-                </ul>
-                <router-link :to="dealsTo" class="dd-all">{{ dealsLine }}<ly-icon name="right" /></router-link>
-                </div>
-                <router-link v-if="feature" :to="catTo(feature)" class="dd-feat">
-                  <span class="dd-fph"><img :src="featurePhoto" alt="" loading="lazy" /></span>
-                  <span class="dd-fk">{{ t("ly.hdr.mostOrdered", "Most ordered") }}</span>
-                  <b><bdi>{{ catTitle(feature) }}</bdi></b>
-                </router-link>
-              </div>
-            </li>
-            <li>
-              <router-link :aria-current="onDeals ? 'page' : undefined" :to="dealsTo" class="nav-a">{{ t("ly.hdr.deals", "Deals") }}</router-link>
-            </li>
-            <li>
-              <router-link :aria-current="onJournal ? 'page' : undefined" :to="blogTo" class="nav-a">{{ t("ly.hdr.journal", "Journal") }}</router-link>
-            </li>
-            <li>
-              <router-link :to="aboutTo" class="nav-a">{{ t("ly.hdr.about", "About") }}</router-link>
-            </li>
-            <li>
-              <router-link :to="contactTo" class="nav-a">{{ t("ly.hdr.contact", "Contact") }}</router-link>
-            </li>
-          </ul>
+    <header id="hdr" class="hdr vn-hdr">
+      <div class="vn-row">
+        <nav :aria-label="t('ly.hdr.main', 'Main')" class="vn-nav">
+          <router-link :class="{ on: onDeals }" :to="dealsTo">{{ t("vino.hdr.offers", "Offers") }}</router-link>
+          <button :aria-expanded="is('dd-shop') ? 'true' : 'false'" aria-controls="dd-shop" type="button" @click="toggle('dd-shop', $event)">
+            {{ t("vino.hdr.watches", "Watches") }}<ly-icon cls="chev" name="down" />
+          </button>
+          <router-link :to="brandsTo">{{ t("vino.hdr.brands", "Brands") }}</router-link>
+          <router-link :class="{ on: onJournal }" :to="blogTo">{{ t("ly.hdr.journal", "Journal") }}</router-link>
         </nav>
 
-        <ly-logo />
+        <router-link :aria-label="shopName" class="vn-logo" to="/"
+          ><b><bdi>{{ shopName }}</bdi></b><small>{{ t("ly.home.tagline", "Luxury watches") }}</small></router-link
+        >
 
         <div class="tools">
-          <button :aria-expanded="is('srch') ? 'true' : 'false'" :aria-label="t('ly.hdr.search', 'Search')" aria-controls="srch" class="ibtn" type="button" @click="toggle('srch', $event)">
-            <ly-icon name="search" />
+          <button :aria-expanded="is('srch') ? 'true' : 'false'" aria-controls="srch" class="vn-sbox" type="button" @click="toggle('srch', $event)">
+            <ly-icon name="search" /><span>{{ t("ly.hdr.searchPh0", "Search watches, brands") }}</span>
+          </button>
+          <button
+            v-if="regionOn"
+            :key="regionKey"
+            :aria-expanded="is('rgp') ? 'true' : 'false'"
+            :aria-label="t('ly.hdr.regionAria', 'Language and currency: {value}', { value: regionShort })"
+            aria-controls="rgp"
+            class="rg-pill rs-pick__btn vn-rg"
+            type="button"
+            @click="toggle('rgp', $event)"
+          >
+            <ly-icon name="globe" /><span dir="ltr">{{ regionShort }}</span>
           </button>
           <router-link :aria-label="t('ly.hdr.account', 'Account')" :to="accountTo" class="ibtn acct"><ly-icon name="user" /></router-link>
           <button
@@ -124,9 +73,66 @@
             type="button"
             @click="toggle('drawer', $event)"
           >
-            <ly-icon name="bag" /><span v-if="units" class="count">{{ units > 99 ? "99+" : units }}</span>
+            <ly-icon name="bag" /><span class="count">{{ units > 99 ? "99+" : units }}</span>
           </button>
-          <a :href="orderHref" class="btn sm alt order" @click.prevent="orderNow">{{ t("ly.hdr.orderNow", "Order now") }}</a>
+        </div>
+      </div>
+
+      <!-- phone: one row of tabs under the wordmark (menu, Watches, Offers, Journal, search) -->
+      <div class="vn-tabs">
+        <button :aria-expanded="is('menu') ? 'true' : 'false'" :aria-label="t('ly.hdr.menu', 'Menu')" aria-controls="menu" class="menu-btn" type="button" @click="toggle('menu', $event)">
+          <ly-icon name="menu" />
+        </button>
+        <button :aria-expanded="is('dd-shop') ? 'true' : 'false'" aria-controls="dd-shop" type="button" @click="toggle('dd-shop', $event)">{{ t("vino.hdr.watches", "Watches") }}</button>
+        <router-link :class="{ on: onDeals }" :to="dealsTo">{{ t("vino.hdr.offers", "Offers") }}</router-link>
+        <router-link :to="blogTo">{{ t("ly.hdr.journal", "Journal") }}</router-link>
+        <button :aria-expanded="is('srch') ? 'true' : 'false'" :aria-label="t('ly.hdr.search', 'Search')" aria-controls="srch" type="button" @click="toggle('srch', $event)">
+          <ly-icon name="search" />
+        </button>
+      </div>
+
+      <!-- The mega menu: collections, brands, price bands, movements and the newest watch. -->
+      <div id="dd-shop" :class="['vn-mega', { open: is('dd-shop') }]">
+        <div class="wrap vn-mega-in">
+          <div>
+            <p class="vn-mh">{{ t("vino.mega.collections", "Collections") }}</p>
+            <ul>
+              <li v-for="c in cats" :key="c.id"><router-link :to="catTo(c)"><bdi>{{ catTitle(c) }}</bdi></router-link></li>
+            </ul>
+          </div>
+          <div v-if="brandList.length">
+            <p class="vn-mh">{{ t("vino.mega.byBrand", "By brand") }}</p>
+            <ul>
+              <li v-for="b in brandList.slice(0, 8)" :key="b.name"><router-link :to="searchTo(b.name)"><bdi>{{ b.name }}</bdi></router-link></li>
+              <li><router-link :to="brandsTo" class="all">{{ t("vino.mega.allBrands", "All brands") }}</router-link></li>
+            </ul>
+          </div>
+          <div>
+            <p class="vn-mh">{{ t("vino.mega.byPrice", "By price") }}</p>
+            <ul>
+              <li v-for="b in bands" :key="b.label"><router-link :to="b.to">{{ b.label }}</router-link></li>
+            </ul>
+          </div>
+          <div>
+            <template v-if="moves.length">
+              <p class="vn-mh">{{ t("vino.mega.movement", "Movement") }}</p>
+              <ul>
+                <li v-for="m in moves" :key="m"><router-link :to="searchTo(m)">{{ m }}</router-link></li>
+              </ul>
+            </template>
+            <p class="vn-mh gap">{{ t("vino.mega.popular", "Popular") }}</p>
+            <ul>
+              <li><router-link :to="newTo">{{ t("vino.mega.newIn", "New in") }}</router-link></li>
+              <li><router-link :to="dealsTo">{{ t("vino.hdr.reduced", "Reduced prices") }}</router-link></li>
+              <li><router-link :to="allTo">{{ t("vino.mega.all", "All watches") }}</router-link></li>
+            </ul>
+          </div>
+          <router-link v-if="feat" :to="productTo(feat)" class="vn-mfeat">
+            <span class="vn-well"><img :src="thumbBig(feat)" alt="" loading="lazy" /></span>
+            <span class="eyebrow">{{ t("vino.mega.newIn", "New in") }}</span>
+            <b>{{ feat.title }}</b>
+            <span class="vn-m">{{ money(priceView(shop, feat).now) }}</span>
+          </router-link>
         </div>
       </div>
 
@@ -174,6 +180,19 @@
         </div>
       </div>
     </header>
+
+    <div v-if="trust.length || facts.phone" class="vn-usp">
+      <div class="vn-usp-in">
+        <ul>
+          <li v-for="x in trust" :key="x.title"><ly-icon :name="x.icon" />{{ x.title }}</li>
+        </ul>
+        <ul class="r">
+          <li v-if="facts.phone"><a :href="tel" dir="ltr"><ly-icon name="phone" />{{ facts.phone }}</a></li>
+          <li><router-link :to="faqTo">{{ t('vino.hdr.help', 'Help') }}</router-link></li>
+          <li><router-link :to="contactTo">{{ t('vino.hdr.contactUs', 'Contact us') }}</router-link></li>
+        </ul>
+      </div>
+    </div>
 
     <teleport to="body">
       <div :dir="rtl ? 'rtl' : 'ltr'" class="ly ly-layers">
@@ -292,6 +311,7 @@ import { openLine as openLineOf,
 } from "../ly";
 import { t } from "../../kalio/i18n/kalio-i18n";
 import { collectionPhoto } from "../ly-photos";
+import { brands, maxOff, movementLabel, movementOf, newest, trustLines } from "../vino/vn";
 
 /* Words that say nothing about a pastry, left out of "Popular". */
 const STOP = new Set(["and", "with", "the", "of", "a", "an", "in", "on", "mini", "classic", "double", "cake", "cakes"]);
@@ -304,7 +324,7 @@ export default {
   },
   emits: ["search", "clear"],
 
-  data: () => ({ q: "", cursor: -1, moreOpen: false, rgpPos: {}, layer, ly, region: regionState }),
+  data: () => ({ q: "", cursor: -1, moreOpen: false, rgpPos: {}, layer, ly, region: regionState, promoShut: false }),
 
   computed: {
     shop() {
@@ -453,6 +473,49 @@ export default {
     r() {
       return window.$storefront.routes;
     },
+    offMax() {
+      void this.region.currency;
+      return this.ly.ready ? maxOff(this.shop) : 0;
+    },
+    promoOn() {
+      return this.offMax > 0 && !this.promoShut;
+    },
+    trust() {
+      void this.region.currency;
+      return this.ly.ready ? trustLines(this.shop, (n) => money(n)) : [];
+    },
+    brandList() {
+      return brands();
+    },
+    moves() {
+      const set = new Set(this.ly.products.map((p) => movementOf(p)).filter(Boolean));
+      return ['auto', 'quartz', 'solar'].filter((m) => set.has(m)).map((m) => movementLabel(m));
+    },
+    /* Price bands that hold at least one watch, in the visitor's currency. */
+    bands() {
+      void this.region.currency;
+      const now = this.ly.products.map((p) => priceView(this.shop, p).now);
+      const B = [[0, 5000], [5000, 10000], [10000, 25000], [25000, 50000], [50000, 100000], [100000, Infinity]];
+      return B.filter(([lo, hi]) => now.some((v) => v >= lo && v < hi)).map(([lo, hi]) => ({
+        label: lo === 0 ? t('vino.mega.under', 'Under {p}', { p: money(hi, true) }) : hi === Infinity ? t('vino.mega.over', '{p} and over', { p: money(lo, true) }) : money(lo, true) + ' – ' + money(hi, true),
+        to: { name: this.r.SHOP_PAGE, query: { price: lo + '-' + (hi === Infinity ? '' : hi) } },
+      }));
+    },
+    feat() {
+      return newest()[0] || null;
+    },
+    brandsTo() {
+      return { path: '/', hash: '#brands' };
+    },
+    newTo() {
+      return { name: this.r.SHOP_PAGE, query: { sort: 'newest' } };
+    },
+    allTo() {
+      return { name: this.r.SHOP_PAGE };
+    },
+    faqTo() {
+      return this.$router.hasRoute("ShopFAQ") ? { name: "ShopFAQ" } : { name: this.r.SHOP_CONTACT_US };
+    },
     dealsTo() {
       return dealsRoute();
     },
@@ -485,6 +548,9 @@ export default {
   },
 
   created() {
+    try {
+      this.promoShut = sessionStorage.getItem("vino-promo") === "0";
+    } catch {}
     loadDm();
     wireLayers();
     closeOnRoute(this.$router);
@@ -535,6 +601,15 @@ export default {
       const list = inCat(c.id);
       if (!list.length) return "";
       return money(Math.min(...list.map((p) => priceView(this.shop, p).now)));
+    },
+    thumbBig(p) {
+      return productImage(p);
+    },
+    shutPromo() {
+      this.promoShut = true;
+      try {
+        sessionStorage.setItem("vino-promo", "0");
+      } catch {}
     },
     thumb(p) {
       return productImage(p, 128);

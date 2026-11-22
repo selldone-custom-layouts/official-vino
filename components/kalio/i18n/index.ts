@@ -10,13 +10,17 @@
 import baseEn from "./base/en";
 import bakiniEn from "./bakini.en";
 import lyEn from "./ly.en";
+import vinoEn from "./vino.en";
 import { basketWord, withSkinWords } from "../../ly/ly-words";
 import { setEnglishHook } from "./kalio-i18n";
 
 setEnglishHook(basketWord);
 
-export const EN: Record<string, string> = withSkinWords({ ...baseEn, ...bakiniEn, ...lyEn }, "en");
+export const EN: Record<string, string> = withSkinWords({ ...baseEn, ...bakiniEn, ...lyEn, ...vinoEn }, "en");
 
 export const LOADERS: Record<string, () => Promise<any>> = {
   ar: () => import("./lang-ar"),
+  de: () => import("./lang-de"),
+  es: () => import("./lang-es"),
+  fr: () => import("./lang-fr"),
 };

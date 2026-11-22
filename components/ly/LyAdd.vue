@@ -10,7 +10,7 @@
   alt: the cocoa button (the mockup's every other selection row).
 -->
 <template>
-  <router-link v-if="choose" :to="productTo" class="btn sm add">{{ t("ly.add.choose", "Choose options") }}</router-link>
+  <button v-if="choose" aria-controls="qv" class="btn sm add" type="button" @click.prevent.stop="chooseOpen($event)">{{ t("ly.add.choose", "Choose options") }}</button>
   <button v-else-if="soldOut && !q" class="btn sm add" disabled type="button">{{ t("ly.add.soldOut", "Sold out") }}</button>
   <button
     v-else-if="!q"
@@ -43,6 +43,7 @@
 import BuyMixin from "../bakini/bakini-buy";
 import LyIcon from "./LyIcon.vue";
 import { t } from "../kalio/i18n/kalio-i18n";
+import { layer, openQuick, productTo as productRoute } from "./ly";
 
 export default {
   name: "LyAdd",
@@ -71,6 +72,10 @@ export default {
   },
   methods: {
     t,
+    chooseOpen(e) {
+      if (layer.open === "qv") return this.$router.push(productRoute(this.product));
+      openQuick(this.product, e.currentTarget);
+    },
     add() {
       this.hadFocus = this.$el?.contains?.(document.activeElement) || document.activeElement === this.$el;
       BuyMixin.methods.add.call(this);

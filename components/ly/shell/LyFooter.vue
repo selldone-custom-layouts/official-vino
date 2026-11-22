@@ -12,61 +12,57 @@
 -->
 <template>
   <div class="ly ly-ftrwrap">
-    <footer class="ftr">
-      <ly-photo aria-hidden="true" art="croissant" class="ftr-tex" deep name="footer">
-        <template #fallback><span aria-hidden="true" class="ph-art"></span></template>
-      </ly-photo>
-      <div class="wrap ftr-in">
-        <div class="ftr-brand">
+    <vn-news />
+    <footer class="ftr vn-ftr">
+      <div class="wrap vn-fcols">
+        <div class="vn-fbrand">
           <span class="ftr-wm"><bdi>{{ shopName }}</bdi></span>
-          <p class="ftr-line">{{ line }}</p>
+          <p v-if="lede">{{ lede }}</p>
         </div>
-        <div v-if="facts.ready && (facts.address || openLine)" class="ftr-col">
-          <h3>{{ t("ly.ftr.visit", "Visit") }}</h3>
-          <p v-if="addressLines.length">
-            <template v-for="(l, i) in addressLines" :key="i"><bdi>{{ l }}</bdi><br v-if="i < addressLines.length - 1" /></template>
-          </p>
-          <p v-if="openLine" class="ftr-h">{{ openLine }}</p>
-        </div>
-        <div v-if="cats.length" class="ftr-col">
+        <div v-if="cats.length">
           <h3>{{ t("ly.ftr.shop", "Shop") }}</h3>
           <ul class="ftr-l">
-            <li v-for="c in cats.slice(0, 8)" :key="c.id">
-              <router-link :to="catTo(c)"><bdi>{{ catTitle(c) }}</bdi></router-link>
-            </li>
+            <li v-for="c in cats.slice(0, 8)" :key="c.id"><router-link :to="catTo(c)"><bdi>{{ catTitle(c) }}</bdi></router-link></li>
+            <li><router-link :to="dealsTo">{{ t("vino.hdr.reduced", "Reduced prices") }}</router-link></li>
           </ul>
         </div>
-        <div v-if="facts.ready && (facts.email || facts.phone)" class="ftr-col">
-          <h3>{{ t("ly.ftr.contact", "Contact") }}</h3>
-          <p v-if="facts.email">
-            <a :href="'mailto:' + facts.email">{{ facts.email }}</a>
-          </p>
-          <a v-if="facts.phone" :href="'tel:' + facts.phone.replace(/[^\d+]/g, '')" class="ftr-phone" dir="ltr">{{ facts.phone }}</a>
-          <ul class="ftr-l sm">
+        <div>
+          <h3>{{ t("vino.hdr.help", "Help") }}</h3>
+          <ul class="ftr-l">
+            <li><router-link :to="faqTo">{{ t("ly.ftr.faq", "FAQ") }}</router-link></li>
+            <li><router-link :to="{ name: r.SHOP_PROFILE_PAGE_TERMS }">{{ t("ly.ftr.terms", "Terms") }}</router-link></li>
+            <li><router-link :to="{ name: r.SHOP_PROFILE_PAGE_PRIVACY }">{{ t("ly.ftr.privacy", "Privacy") }}</router-link></li>
+          </ul>
+        </div>
+        <div>
+          <h3>{{ t("vino.ftr.company", "Company") }}</h3>
+          <ul class="ftr-l">
+            <li><router-link :to="{ name: r.SHOP_PROFILE_PAGE_ABOUT_US }">{{ t("vino.ftr.about", "About {shop}", { shop: shopName }) }}</router-link></li>
             <li><router-link :to="blogTo">{{ t("ly.ftr.journal", "Journal") }}</router-link></li>
-            <li><router-link :to="{ name: r.SHOP_PROFILE_PAGE_ABOUT_US }">{{ t("ly.ftr.about", "About") }}</router-link></li>
-            <li><router-link :to="{ name: r.SHOP_CONTACT_US }">{{ t("ly.ftr.contactPage", "Contact") }}</router-link></li>
+            <li><router-link :to="{ name: r.SHOP_CONTACT_US }">{{ t("vino.hdr.contactUs", "Contact us") }}</router-link></li>
+          </ul>
+        </div>
+        <div v-if="facts.ready && (facts.address || facts.phone || facts.email)" class="vn-fcontact">
+          <h3>{{ t("ly.ftr.contact", "Contact") }}</h3>
+          <ul class="vn-rows">
+            <li v-if="addressLines.length"><ly-icon name="pin" /><span><bdi>{{ addressLines.join(", ") }}</bdi></span></li>
+            <li v-if="facts.phone"><ly-icon name="phone" /><a :href="'tel:' + facts.phone.replace(/[^d+]/g, '')" dir="ltr">{{ facts.phone }}</a></li>
+            <li v-if="facts.email"><ly-icon name="mail" /><a :href="'mailto:' + facts.email">{{ facts.email }}</a></li>
           </ul>
         </div>
       </div>
 
-      <!-- The theme switcher (the owner, 10 November 2026: in the footer on
-           every Layout), only on the Layout's showcase shop. -->
+      <!-- The theme switcher (the owner, 10 November 2026: in the footer on every Layout), only on the showcase shops. -->
       <div v-if="theme.enabled" class="dts-row">
         <div class="wrap dts-in"><theme-switcher-row /></div>
       </div>
 
       <div class="ftr-bot">
         <div class="wrap fb-in">
-          <nav :aria-label="t('ly.ftr.legal', 'Legal')">
-            <router-link :to="{ name: r.SHOP_PROFILE_PAGE_PRIVACY }">{{ t("ly.ftr.privacy", "Privacy") }}</router-link>
-            <router-link :to="{ name: r.SHOP_PROFILE_PAGE_TERMS }">{{ t("ly.ftr.terms", "Terms") }}</router-link>
-            <router-link :to="faqTo">{{ t("ly.ftr.faq", "FAQ") }}</router-link>
-            <s-footer-section-gdpr class="ly-gdpr"></s-footer-section-gdpr>
-          </nav>
+          <span>© {{ year }} <bdi>{{ shopName }}</bdi></span>
           <div class="fb-end">
+            <s-footer-section-gdpr class="ly-gdpr"></s-footer-section-gdpr>
             <s-storefront-social-buttons class="ly-social"></s-storefront-social-buttons>
-            <span>© {{ year }} <bdi>{{ shopName }}</bdi><template v-if="facts.city"> · <bdi>{{ facts.city }}</bdi></template></span>
             <s-footer-section-selldone class="ly-made"></s-footer-section-selldone>
           </div>
         </div>
@@ -76,7 +72,10 @@
 </template>
 
 <script>
-import LyPhoto from "../LyPhoto.vue";
+import LyIcon from "../LyIcon.vue";
+import VnNews from "../vino/VnNews.vue";
+import { dealsRoute } from "../../kalio/kalio-catalog";
+import { sentences } from "../vino/vn";
 import ThemeSwitcherRow from "../../theme-switcher/ThemeSwitcherRow.vue";
 import { themeState } from "../../theme-switcher/theme-switcher";
 import SStorefrontSocialButtons from "@selldone/components-vue/storefront/social/SStorefrontSocialButtons.vue";
@@ -91,7 +90,7 @@ const US = { California: "CA", "New York": "NY", Texas: "TX", Washington: "WA", 
 
 export default {
   name: "LyFooter",
-  components: { LyPhoto, ThemeSwitcherRow, SStorefrontSocialButtons, SFooterSectionGdpr, SFooterSectionSelldone },
+  components: { LyIcon, VnNews, ThemeSwitcherRow, SStorefrontSocialButtons, SFooterSectionGdpr, SFooterSectionSelldone },
   data: () => ({ theme: themeState, ly }),
   computed: {
     shop() {
@@ -112,6 +111,12 @@ export default {
     },
     cats() {
       return this.ly.cats;
+    },
+    dealsTo() {
+      return dealsRoute();
+    },
+    lede() {
+      return sentences(this.shop)[0] || this.line;
     },
     blogTo() {
       return journalRoute();

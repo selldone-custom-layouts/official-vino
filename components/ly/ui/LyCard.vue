@@ -24,21 +24,15 @@
         />
       </router-link>
       <span v-if="pv.off > 0" ref="off" :aria-label="t('ly.card.offAria', '{off} percent off', { off: pv.off })" class="pc-off"><span dir="ltr">−{{ pv.off }}%</span></span>
-      <button :aria-label="t('ly.card.quick', 'Quick view: {name}', { name: product.title })" aria-controls="qv" class="pc-qv" type="button" @click="quick($event)">
-        <ly-icon name="eye" />
-      </button>
     </div>
     <div class="pc-tx">
-      <p v-if="!noCat && catName" class="pc-c"><bdi>{{ catName }}</bdi></p>
+      <p v-if="brand" class="pc-c vn-brand"><bdi>{{ brand }}</bdi></p>
       <h3 class="pc-t">
         <router-link :to="to">{{ product.title }}</router-link>
       </h3>
-      <p class="pc-u">
-        {{ t("ly.card.per", "Per {unit}", { unit }) }}<template v-if="low">{{ " · " }}<span class="low">{{ t("ly.card.onlyLeft", "only {n} left", { n: product.quantity }) }}</span></template>
-      </p>
+      <p class="pc-u vn-spec">{{ spec || " " }}</p>
       <p class="pc-ly">
-        <span class="now money">{{ money(pv.now) }}</span><template v-if="pv.was">{{ " " }}<s class="was money">{{ money(pv.was) }}</s></template
-        ><span v-if="pv.save > 0" class="pc-sv">{{ t("ly.card.save", "Save {amount}", { amount: money(pv.save) }) }}</span>
+        <span :class="['now', 'money', { off: pv.was }]">{{ money(pv.now) }}</span><template v-if="pv.was">{{ " " }}<s class="was money"><span class="sr">{{ t("vino.card.was", "Was") }} </span>{{ money(pv.was) }}</s></template>
       </p>
       <div class="pc-add"><ly-add :product="product" /></div>
     </div>
@@ -47,6 +41,7 @@
 
 <script>
 import LyIcon from "../LyIcon.vue";
+import { brandOf, specLine } from "../vino/vn";
 import LyAdd from "../LyAdd.vue";
 import { catOf, catTitle, money, openQuick, priceView, productImage, productTo, unitOf } from "../ly";
 import { dropSrcset, productSrcset } from "../../kalio/kalio-catalog";
@@ -88,6 +83,12 @@ export default {
     low() {
       const q = Number(this.product.quantity);
       return q > 0 && q <= 5;
+    },
+    brand() {
+      return brandOf(this.product);
+    },
+    spec() {
+      return specLine(this.product);
     },
     catName() {
       return catTitle(catOf(this.product.category_id));
