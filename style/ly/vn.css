@@ -327,3 +327,7 @@ html .ly .vn-revs.ly-solo { display: block; }
 html .ly .vn-revs .empty { background: var(--ly-paper); border-radius: var(--ly-r-pn); box-shadow: inset 0 0 0 1px var(--ly-line); }
 html .ly .vn-tabs-pd .tl { margin-inline: 0; padding-inline: 0; }
 html .ly .vn-read .ly-pd-article { border: 0; }
+/* 1.0.3: a colour variant without its own photo shows its colour as a swatch (never an empty box): a circle filled
+   with the hex ("#a/#b" a hard 135° split), a 1px inset edge so white and very light colours stay visible */
+html .ly .opt-ph:has(> .ly-opt-sw) { display: grid; place-items: center; }
+html .ly .opt-ph > .ly-opt-sw { display: block; width: 62%; aspect-ratio: 1; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(15, 23, 41, .34); }
