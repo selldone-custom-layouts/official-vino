@@ -11,7 +11,7 @@
   Arrow keys move along the tabs.
 -->
 <template>
-  <section id="tabs" :aria-label="t('ly.pd.details', 'Details')" class="pd-tabs">
+  <section id="tabs" :aria-label="t('ly.pd.details', 'Details')" class="pd-tabs vn-tabs-pd">
     <div class="wrap">
       <div :aria-label="t('ly.pd.detailsAria', 'Product details')" class="tl" role="tablist" @keydown="keys">
         <button
@@ -30,16 +30,16 @@
         </button>
       </div>
 
-      <div id="tp-desc" :hidden="cur !== 'desc'" aria-labelledby="tb-desc" class="tp" role="tabpanel">
-        <div :class="['pd-desc', { 'ly-solo': !pros.length }]">
-          <div class="pd-lead">
-            <p v-for="(l, i) in lead" :key="i">{{ l }}</p>
-          </div>
+      <div id="tp-desc" :hidden="cur !== 'desc'" aria-labelledby="tb-desc" class="tp vn-tp" role="tabpanel">
+        <div class="vn-read">
+          <div v-if="articleBody" class="ly-pd-article vn-prose" v-html="articleBody"></div>
+          <p v-else class="vn-tp-note">{{ t("vino.pd.noDesc", "The full specification is under “Additional information”.") }}</p>
+          <p v-if="offLine" class="vn-tp-note">{{ offLine }}</p>
           <template v-if="pros.length">
-            <h3 class="pd-sub">{{ t("ly.pd.love", "Why you’ll love it") }}</h3>
-            <ul class="pros">
+            <h3 class="vn-tp-h">{{ t("ly.pd.love", "Why you’ll love it") }}</h3>
+            <ul class="vn-pros">
               <li v-for="(x, i) in pros" :key="i">
-                <span class="ck"><ly-icon name="check" /></span>
+                <span class="vn-ck"><ly-icon name="check" /></span>
                 <div>
                   <b>{{ x[0] }}</b>
                   <p v-if="x[1]">{{ x[1] }}</p>
@@ -48,22 +48,21 @@
             </ul>
           </template>
         </div>
-        <div v-if="articleBody" class="ly-pd-article" v-html="articleBody"></div>
       </div>
 
-      <div id="tp-info" :hidden="cur !== 'info'" aria-labelledby="tb-info" class="tp" role="tabpanel">
-        <div class="spec">
-          <div v-for="g in groups" :key="g.group" class="spec-g">
-            <h3 v-if="g.group" class="pd-sub">{{ g.group }}</h3>
-            <dl class="spec-t">
+      <div id="tp-info" :hidden="cur !== 'info'" aria-labelledby="tb-info" class="tp vn-tp" role="tabpanel">
+        <div class="vn-spec">
+          <div v-for="g in groups" :key="g.group" class="vn-spec-g">
+            <h3 v-if="g.group" class="vn-spec-h">{{ g.group }}</h3>
+            <dl>
               <div v-for="r in g.rows" :key="r[0]">
                 <dt>{{ r[0] }}</dt>
                 <dd>{{ r[1] }}</dd>
               </div>
             </dl>
           </div>
-          <div v-if="product.sku" class="spec-g ly-sku">
-            <dl class="spec-t">
+          <div v-if="product.sku" class="vn-spec-g">
+            <dl>
               <div>
                 <dt>{{ t("ly.pd.sku", "SKU") }}</dt>
                 <dd>{{ product.sku }}</dd>
@@ -73,8 +72,8 @@
         </div>
       </div>
 
-      <div id="tp-rev" :hidden="cur !== 'rev'" aria-labelledby="tb-rev" class="tp" role="tabpanel">
-        <div v-if="!rated" :class="['revs', { 'ly-solo': !criteria.length }]">
+      <div id="tp-rev" :hidden="cur !== 'rev'" aria-labelledby="tb-rev" class="tp vn-tp" role="tabpanel">
+        <div v-if="!rated" :class="['revs', 'vn-revs', { 'ly-solo': !criteria.length }]">
           <ly-empty :text="noReviewsText" :title="t('ly.pd.noReviewsT', 'No reviews yet')" icon="star">
             <template v-if="!writing" #acts>
               <button class="btn sm" type="button" @click="write">{{ user ? t("ly.pd.writeFirst", "Write the first review") : t("ly.pd.signInReview", "Sign in to write a review") }}</button>
@@ -146,6 +145,11 @@ export default {
       const sold = pairing ? t("ly.pd.soldPair", "Sold as one {unit}, and good with {pairing}.", { unit, pairing: pairing.toLowerCase() }) : t("ly.pd.sold", "Sold as one {unit}.", { unit });
       out.push(off > 0 ? `${sold} ${t("ly.pd.offIn", "{off}% off, already in the price.", { off })}` : sold);
       return out;
+    },
+    /* "12% off, already in the price." when a reduction is live (no unit line: a watch is one watch). */
+    offLine() {
+      const off = percentOff(this.$store.getters.getShop, this.product);
+      return off > 0 ? t("ly.pd.offIn", "{off}% off, already in the price.", { off }) : "";
     },
     articleBody() {
       const body = this.product?.article_pack?.article?.body;

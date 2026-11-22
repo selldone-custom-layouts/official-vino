@@ -82,6 +82,7 @@ const en: Record<string, string> = {
   "vino.trust.world": "Worldwide delivery",
   "vino.trust.worldFee": "Flat {fee} shipping to any address",
   "vino.trust.worldFree": "Free shipping to any address",
+  "vino.pd.noDesc": "The full specification is under “Additional information”.",
 };
 
 export default en;

@@ -80,6 +80,7 @@ const ar: Record<string, string> = {
   "vino.trust.world": "توصيل إلى كل العالم",
   "vino.trust.worldFee": "شحن بسعر ثابت {fee} إلى أي عنوان",
   "vino.trust.worldFree": "شحن مجاني إلى أي عنوان",
+  "vino.pd.noDesc": "المواصفات الكاملة في «معلومات إضافية».",
 };
 
 export default ar;

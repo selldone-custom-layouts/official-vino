@@ -80,6 +80,7 @@ const fr: Record<string, string> = {
   "vino.trust.world": "Livraison internationale",
   "vino.trust.worldFee": "Livraison à {fee} vers toute adresse",
   "vino.trust.worldFree": "Livraison gratuite vers toute adresse",
+  "vino.pd.noDesc": "La fiche technique complète se trouve dans « Informations complémentaires ».",
 };
 
 export default fr;
