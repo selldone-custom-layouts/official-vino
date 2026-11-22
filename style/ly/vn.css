@@ -270,3 +270,19 @@ html .ly :is(.money, .pm-v, .u-price, .qv-ly .now, .pd-price .now, .bt-tot .now)
 html .ly .pd-price .now { font-size: 30px; font-weight: 500; }
 html .ly .qv-ly .now, html .ly .bt-tot .now { font-size: 26px; font-weight: 500; }
 html .ly .pm-v { font-weight: 500; }
+/* 1.0.1 (live checks): the base's .ghost fades a button to half; Vino's ghost button is a full-strength outline */
+html .ly .btn.ghost { opacity: 1; }
+/* eyebrows on the family-dark hero and feature keep their light ink */
+html .ly .vn-hero .eyebrow, html .ly .vn-feat .eyebrow { color: var(--ly-dark-muted); }
+/* the saving tag sits on the inner radius */
+html .ly .pc .pc-off { border-radius: var(--ly-r-in); }
+/* photos behind words on purpose: the hero's words and the editorial card sit over their photo */
+.vn-hero, .vn-ed-media { isolation: isolate; }
+.vn-ed-media { position: relative; }
+.vn-ed-media img { position: absolute; inset: 0; z-index: -1; }
+@media (min-width: 901px) { .vn-hero picture img { position: absolute; inset: 0; z-index: -1; } }
+/* the phone tabs: every tab fills its cell (the menu button was 20px at the screen's edge) */
+@media (max-width: 900px) { html .ly .vn-tabs > * { width: 100%; height: 100%; justify-self: stretch; } }
+/* the journal: four columns only where each keeps a 240px text column */
+@media (max-width: 1199px) { .vn-jr { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .vn-jr { grid-template-columns: minmax(0, 1fr); } }

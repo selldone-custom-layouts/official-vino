@@ -26,7 +26,7 @@ const PAGES = (process.env.PAGES || "home=/,category=/croissants-category,produc
   });
 const WIDTHS = (process.env.WIDTHS || "1440,1100,390").split(",").map(Number);
 const VERBOSE = !!process.env.V;
-const SCALE = [8, 4];
+const SCALE = [6, 4]; /* the skin's shape: panel, inner (skins/vino/skin.json) */
 
 /* runs in the page: every edge on the scale; nothing past the window */
 function audit(SCALE) {

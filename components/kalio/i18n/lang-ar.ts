@@ -2,6 +2,7 @@
 import base from "./base/ar";
 import bakini from "./bakini.ar";
 import own from "./ly.ar";
+import vino from "./vino.ar";
 import { withSkinWords } from "../../ly/ly-words";
 
-export default withSkinWords({ ...base, ...bakini, ...own }, "ar") as Record<string, string>;
+export default withSkinWords({ ...base, ...bakini, ...own, ...vino }, "ar") as Record<string, string>;
