@@ -47,8 +47,8 @@
     "article": "/blog/how-to-choose-a-luxury-watch-that-truly-fits-you-743551",
     "compare": "p709386_p325697_p709385",
     "i18nIgnore": "",
-    "mega": "[aria-controls=vn-mega]",
-    "megaPanel": "#vn-mega",
+    "mega": "[aria-controls=dd-shop]",
+    "megaPanel": "#dd-shop",
     "filterBtn": ".vn-ls-fbtn",
     "quick": ""
   },
