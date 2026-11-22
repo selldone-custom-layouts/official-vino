@@ -198,7 +198,8 @@
     }
   },
   "loading": {
-    "art": "none"
+    "art": "none",
+    "sub": "Luxury watches"
   },
   "splash": {
     "art": "none"
