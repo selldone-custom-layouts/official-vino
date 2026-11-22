@@ -17,12 +17,12 @@
     "devLanguages": "vino-dev-languages"
   },
   "palettes": [
-    "steel",
     "green",
+    "steel",
     "burgundy",
     "bronze"
   ],
-  "brand": "steel",
+  "brand": "green",
   "mode": "light",
   "custom": [
     "#ffff00",

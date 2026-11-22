@@ -18,7 +18,7 @@
 import type { ThemeSettings } from "../theme-switcher/theme-switcher";
 
 export const THEME_SETTINGS: ThemeSettings = {
-  palette: "steel",
+  palette: "green",
   // brandColor: "#F5C400",
   mode: "light",
   themeSwitcher: "showcase",
