@@ -142,7 +142,7 @@ Right to left, Vino keeps these rules:
 ## Rules the design keeps
 
 - **One colour family.** Every colour on the page comes from the palette's hue, plus white and the family's near-black: the page and its soft tint bands, the plates, the lines, the words, the dark top bar and footer, the chips and the map pin. A palette or a custom colour re-tints the whole page, never just the buttons. Two tint bands never sit side by side. Every colour is a token.
-- **One action colour.** Blued steel (or your palette) for every button, chosen state and link.
+- **One action colour.** Racing green (or your palette) for every button, chosen state and link.
 - **One shape language.** A circle for round things, 8 px for panels and photos, 4 px for inner parts; square only where a band meets the window's edge; never sharp and round on neighbouring parts. Selldone's own sheets, windows and chips are mapped onto the same scale.
 - **Flat.** Buttons without shadows; hover changes the colour only; no line under any word or icon. The one exception: links inside a post's own text are underlined, so a reader can see them.
 - **Rings inside the box.** Every selection ring and card edge is an inset shadow, never an outline; a focus ring keeps the control's shape, and a field has one inset ring.

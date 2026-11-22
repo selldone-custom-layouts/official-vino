@@ -10,9 +10,9 @@
 </p>
 
 <p align="center">
-  <a href="https://vino.selldone.shop"><img src="https://img.shields.io/badge/live%20shop-vino.selldone.shop-2F4E8F?style=flat-square" alt="Live shop"></a>
-  <a href="https://github.com/selldone-custom-layouts/official-vino/wiki"><img src="https://img.shields.io/badge/docs-wiki-161F30?style=flat-square" alt="Wiki"></a>
-  <a href="https://github.com/selldone-custom-layouts/official-vino/wiki/Install-with-AI"><img src="https://img.shields.io/badge/set%20up-with%20AI-E9F0FF?style=flat-square" alt="Set up with AI"></a>
+  <a href="https://vino.selldone.shop"><img src="https://img.shields.io/badge/live%20shop-vino.selldone.shop-1F5C46?style=flat-square" alt="Live shop"></a>
+  <a href="https://github.com/selldone-custom-layouts/official-vino/wiki"><img src="https://img.shields.io/badge/docs-wiki-0D251B?style=flat-square" alt="Wiki"></a>
+  <a href="https://github.com/selldone-custom-layouts/official-vino/wiki/Install-with-AI"><img src="https://img.shields.io/badge/set%20up-with%20AI-DBF8EB?style=flat-square" alt="Set up with AI"></a>
   <img src="https://img.shields.io/badge/Selldone-Layout-2B2F7A?style=flat-square" alt="Selldone Layout">
   <img src="https://img.shields.io/badge/Vue-3-1fc8a9?style=flat-square&logo=vuedotjs&logoColor=white" alt="Vue 3">
   <img src="https://img.shields.io/badge/languages-en%20·%20ar-26333A?style=flat-square" alt="Languages">
@@ -32,12 +32,12 @@
 
 **Vino Luxury Watches** — Luxury watches with hairline rules: promo strip, mega menu, offers hero, collection tiles, rails, filter bar, gallery product page with service rows, compare, receipt basket.
 
-- **one colour family**: the palette's hue gives every ground (the white page, its soft tint bands, the plates, the lines, the words, the dark top bar and footer) and the one action colour (Blued steel `#2f4e8f` by default), so a palette or a custom colour re-tints the whole page;
+- **one colour family**: the palette's hue gives every ground (the white page, its soft tint bands, the plates, the lines, the words, the dark top bar and footer) and the one action colour (Racing green `#1f5c46` by default), so a palette or a custom colour re-tints the whole page;
 - Bodoni Moda for headings, the wordmark and numbers set large, over Archivo for reading, buttons and the nav;
 - **one shape language**: circles for round things, 6 px panels and photos, 4 px inner parts; square only where a band meets the window's edge; focus rings inside the box, one per control;
 - photography in every slot (the shop's own photos, with designed fallbacks drawn from the shop's own products);
 - flat buttons, hover changes the colour only, no line under any word or icon;
-- light by default, with the other mode in the same family; a **Theme** row in the footer on the showcase shop: Blued steel, Racing green, Burgundy, Bronze, a **Custom colour** and Light / Dark;
+- light by default, with the other mode in the same family; a **Theme** row in the footer on the showcase shop: Racing green, Blued steel, Burgundy, Bronze, a **Custom colour** and Light / Dark;
 - it says **basket**; every word it writes is in English and Arabic (right to left).
 
 It runs on **[vino.selldone.shop](https://vino.selldone.shop)**, one domain of the Selldone shop Watchino (Selldone lets each domain of a shop carry its own Layout; the shop's default and its other domains keep theirs).
@@ -48,8 +48,7 @@ Everything is read live from the shop: its title (drawn as the wordmark), collec
 
 | # | Section | Variant | What it shows |
 | --- | --- | --- | --- |
-| 1 | `hero` | `split` | The shop's name and line on the left; the counter photo bleeding to the right edge of the frame, a framed inset across the seam with the best seller, the three most-ordered collections set large on the photo's dark corner (from Pralino). |
-| 2 | `journal` | `photo` | The four newest posts beside a tall photo with the big word 'Journal' (from Pralino; best last). |
+| 1 | `watches` | `hairline` | Vino (option A Hairline): the offers hero, trust facts and entry tiles, collection photo tiles, New in, the editorial pair, Reduced prices, the delivery feature, brands and the journal, in one component. |
 
 A section the shop has no data for hides itself; tint bands alternate with white.
 

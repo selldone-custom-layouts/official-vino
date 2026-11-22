@@ -10,7 +10,7 @@ An AI coding agent (for example **Claude Code** or **OpenAI Codex**) can set Vin
 | Your shop's **OAuth client id**, set up for the shop | Shopper sign-in. Without it, sign-in leaves for Selldone and shows an error. **Do this first.** | Shop dashboard (the shop's login / OAuth client settings), or the Selldone MCP connector (`selldone_shop_client_list`, `selldone_shop_client_create`) |
 | Your shop's **handle** (the name in `name.myselldone.com`) and **shop id** | The agent uses them in `.env` and when attaching | Shop dashboard |
 | Your shop's title and address | The title is drawn as the wordmark (with a capital first letter) and opens the hero; the city from your address sits under the wordmark | Shop dashboard |
-| Your theme | One file for the colours | You choose: a palette (`steel`, `green`, `burgundy`, `bronze`) or a brand colour `#RRGGBB`, and light or dark. The whole page takes the colour's family, not only the buttons |
+| Your theme | One file for the colours | You choose: a palette (`green`, `steel`, `burgundy`, `bronze`) or a brand colour `#RRGGBB`, and light or dark. The whole page takes the colour's family, not only the buttons |
 | A domain to try it on | Vino goes live on one domain first; the whole shop only when you say | A domain of your shop, for example `shop.example.com` (see [Go Live](Go-Live)) |
 | A GitHub account | Your own copy (fork) of this repository | [github.com](https://github.com) |
 | A computer with **Git**, **Node.js 22.15 or newer**, **Python 3** (as `python`) and **Bash** (Git Bash on Windows) | Building and packaging | — |
@@ -38,7 +38,7 @@ My shop handle: {SHOP_HANDLE}        (as in {SHOP_HANDLE}.myselldone.com)
 My shop id: {SHOP_ID}
 My GitHub account: {GITHUB_USER}
 New Layout package name (lowercase, permanent, unique to me): {PACKAGE}   e.g. mybakery-classic
-My theme: {THEME}   e.g. palette "steel", light   or   brandColor "#F5C400", dark
+My theme: {THEME}   e.g. palette "green", light   or   brandColor "#F5C400", dark
 Where it goes live first: {DOMAIN}   one domain of my shop, e.g. shop.example.com
 (The whole shop only when I say so.)
 Playwright on this computer: {PLAYWRIGHT}   the folder that holds node_modules/playwright

@@ -21,9 +21,9 @@ Ink, muted words and field edges are then walked until they reach their contrast
 
 ## Vino's colours
 
-Vino paints every action with **one colour**, Blued steel `#2f4e8f` (white words 8.05:1) on every button, chosen state and link; on the dark top bar and footer the family's light shade (`--ly-act-dk`, `#84a9f1`) marks the hover. The Blued steel family is built from the seed `#2F4E8F`.
+Vino paints every action with **one colour**, Racing green `#1f5c46` (white words 7.84:1) on every button, chosen state and link; on the dark top bar and footer the family's light shade (`--ly-act-dk`, `#7bb79d`) marks the hover. The Racing green family is built from the seed `#1F5C46`.
 
-Around it, in the light mode: a white page `#ffffff` with soft tint bands and cards `#f8faff`, plates `#eef4ff`, a deeper tint `#dae7ff`, near-black ink `#1d222b`, muted words `#585e69`, lines `#d7e0f1`; a dark top bar and footer in the family's darkest shade `#161f30` with words `#f3f7ff`. These are the Blued steel values: with another palette or a custom colour every one of them takes that colour's hue. In the dark mode, the family's night: the page and header `#0d0f15`, bands and fields `#12151b`, cards `#171c24`, plates `#1c2433`, words `#ebf0fb`, muted words `#b7becb`, lines `#292e38`, the top bar and footer `#050b18`, the action colour `#4a6baf` with white words and links `#8bb1fa`. Every colour is a token (`--ly-…`): `style/ly-skin.gen.scss` holds the brand palette's values (`:root` is light, `html.ly-dark` is dark) and `ly-family.ts` rewrites them for the palette on the page.
+Around it, in the light mode: a white page `#ffffff` with soft tint bands and cards `#f3fdf8`, plates `#e9f8f1`, a deeper tint `#cbf0df`, near-black ink `#18251f`, muted words `#53615b`, lines `#d1e5dc`; a dark top bar and footer in the family's darkest shade `#0d251b` with words `#eefaf4`. These are the Racing green values: with another palette or a custom colour every one of them takes that colour's hue. In the dark mode, the family's night: the page and header `#0a110e`, bands and fields `#0f1713`, cards `#141f1a`, plates `#152921`, words `#e7f4ee`, muted words `#b2c2bb`, lines `#24312b`, the top bar and footer `#000f08`, the action colour `#3c7860` with white words and links `#82bea4`. Every colour is a token (`--ly-…`): `style/ly-skin.gen.scss` holds the brand palette's values (`:root` is light, `html.ly-dark` is dark) and `ly-family.ts` rewrites them for the palette on the page.
 
 The mode from the settings file (light by default) is painted before the first paint on every shop, so the other mode never flashes.
 
@@ -33,7 +33,7 @@ The mode from the settings file (light by default) is painted before the first p
 
 The **Theme** row sits in the footer, in a band of its own above the legal row, on the family's dark in both modes. It is never in the header. It holds:
 
-- **Colour:** Blued steel, Racing green, Burgundy, Bronze (Blued steel is the default), and **Custom colour** (any colour from the browser's colour picker; the whole family is built from it and its action colour is made readable in light and dark against Vino's own surfaces, with a note "Adjusted for readability" when it had to change).
+- **Colour:** Racing green, Blued steel, Burgundy, Bronze (Racing green is the default), and **Custom colour** (any colour from the browser's colour picker; the whole family is built from it and its action colour is made readable in light and dark against Vino's own surfaces, with a note "Adjusted for readability" when it had to change).
 - **Mode:** Light or Dark.
 
 One click changes the whole site at once, with no reload: Vino's colour family, the Kalio base, Vuetify's theme and Selldone's own parts (the buy button, prices, the bag drawer, the checkout sheets, dialogs). The choice is kept in the browser (key `vino-theme`; dark mode is the class `pr-dark` on `<html>`) and painted before the first paint, so the default never flashes. The arrow keys (and Home / End) move between the swatches.
@@ -49,7 +49,7 @@ The visitor switcher is a **showcase** feature. With `themeSwitcher: "showcase"`
 
 ```ts
 export const THEME_SETTINGS: ThemeSettings = {
-  palette: "steel",            // one of `steel`, `green`, `burgundy`, `bronze`
+  palette: "green",            // one of `green`, `steel`, `burgundy`, `bronze`
   // brandColor: "#F5C400",  // any colour; replaces palette (the whole page takes its family)
   mode: "light",             // "light" | "dark"
   themeSwitcher: "showcase", // "showcase" | "on" (your visitors get it) | "off"
@@ -59,7 +59,7 @@ export const THEME_SETTINGS: ThemeSettings = {
 
 | Setting | Allowed values |
 | --- | --- |
-| `palette` | `steel`, `green`, `burgundy`, `bronze` (`steel` is the brand and the default) |
+| `palette` | `green`, `steel`, `burgundy`, `bronze` (`green` is the brand and the default) |
 | `brandColor` | any `"#RRGGBB"`; when set it replaces `palette`, and the whole page (bands, plates, lines, words, the dark bars) takes this colour's family |
 | `mode` | `"light"` (white and the soft tint; the default) or `"dark"` (the family's night) |
 | `themeSwitcher` | `"showcase"` (the visitor switcher shows only on the Layout's own showcase shops; the default), `"on"` (your visitors get the Theme row in the footer), `"off"` |
@@ -79,7 +79,7 @@ Change only these lines; leave the rest of the file as it is.
 | "Make it dark" | `mode: "dark"` |
 | "Let visitors switch themes" | `themeSwitcher: "on"` |
 | "Remove the switcher" | `themeSwitcher: "off"` (on your own shop it is already hidden with `"showcase"`) |
-| "Go back to the original colours" | remove `brandColor`, set `palette: "steel", mode: "light"` |
+| "Go back to the original colours" | remove `brandColor`, set `palette: "green", mode: "light"` |
 
 Then build and upload a new version and put it live:
 
@@ -94,8 +94,8 @@ See [Build and Upload](Build-and-Upload) and [Go Live](Go-Live).
 
 | Palette | Seed of the family | Light: action colour, white words on it | Light: link colour on the tint band / the plate | Dark: action colour, white words on it | Dark: link colour on the card |
 | --- | --- | --- | --- | --- | --- |
-| Blued steel | `#2F4E8F` | `#2f4e8f` 8.05:1 | 7.71:1 / 7.29:1 | `#4a6baf` 5.23:1 | `#8bb1fa` on `#171c24` 7.95:1 |
 | Racing green | `#1F5C46` | `#1f5c46` 7.84:1 | 7.55:1 / 7.16:1 | `#3c7860` 5.19:1 | `#82bea4` on `#141f1a` 7.94:1 |
+| Blued steel | `#2F4E8F` | `#2f4e8f` 8.05:1 | 7.71:1 / 7.29:1 | `#4a6baf` 5.23:1 | `#8bb1fa` on `#171c24` 7.95:1 |
 | Burgundy | `#7A2436` | `#7a2436` 9.84:1 | 9.40:1 / 8.85:1 | `#aa4f5e` 5.26:1 | `#f693a0` on `#231819` 7.89:1 |
 | Bronze | `#7A5A1E` | `#7a5a1e` 6.35:1 | 6.06:1 / 5.75:1 | `#87672c` 5.24:1 | `#ceab70` on `#201b12` 7.89:1 |
 
@@ -110,11 +110,11 @@ Run these from the repository root after a theme change. They need Playwright; s
    PAGES="home=/,category=/<a category>,product=/product/<id>" \
      node components/theme-switcher/tools/contrast-audit.cjs https://<your shop> ".pr .ftr"
    ```
-   To test one palette and mode, add `STORAGE='{"vino-theme":"{\"palette\":\"steel\",\"mode\":\"dark\"}"}'` (this works where the switcher is shown).
+   To test one palette and mode, add `STORAGE='{"vino-theme":"{\"palette\":\"green\",\"mode\":\"dark\"}"}'` (this works where the switcher is shown).
 2. **Bag drawer, bag page and address sheet.** It must print `TOTAL 0`. It fills a bag in the browser only and blocks every order request. The palette argument is a palette id, or `custom:#rrggbb` for a custom colour:
    ```sh
    SHOP=<your shop's xapi name> STORAGE_KEY=vino-theme WAIT=".pr .ftr" CART=".bag-btn" \
-     node components/theme-switcher/tools/cart-audit.cjs https://<your shop> steel light
+     node components/theme-switcher/tools/cart-audit.cjs https://<your shop> green light
    ```
 3. **Underlines, boxes and shapes.** No line under any word or icon (a post's own links aside), at rest or on hover; photos never on words, icon rows aligned; every edge a circle, 8 px or 4 px, focus keeping its shape, nothing past the window. Each must print `TOTAL 0`:
    ```sh
