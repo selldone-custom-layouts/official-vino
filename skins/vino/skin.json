@@ -343,5 +343,6 @@
       "ly.strip.pickupT": "Collect at the shop",
       "ly.strip.within": "Local courier within {km} km of the shop."
     }
-  }
+  },
+  "status": "live"
 }
