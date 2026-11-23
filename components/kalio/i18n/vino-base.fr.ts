@@ -1552,6 +1552,11 @@ const fr: Record<string, string> = {
   "ly.strip.ship": "Livraison partout.",
   "ly.strip.shipFree": "Livraison partout, offerte dès {amount} d’achat.",
   "ly.strip.within": "Coursier local à moins de {km} km de la boutique.",
+  "ly.co.toPay": "Continuer vers le paiement",
+  "ly.co.placeOrder": "Passer la commande",
+  "ly.ls.theBrand": "La marque",
+  "ly.ls.brandLead.one": "{n} montre {brand}, avec son prix et sa fiche technique.",
+  "ly.ls.brandLead.other": "{n} montres {brand}, chacune avec son prix et sa fiche technique.",
 };
 
 export default fr;

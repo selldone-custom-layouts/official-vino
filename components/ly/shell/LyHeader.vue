@@ -40,7 +40,9 @@
           <button :aria-expanded="is('dd-shop') ? 'true' : 'false'" aria-controls="dd-shop" type="button" @click="toggle('dd-shop', $event)">
             {{ t("vino.hdr.watches", "Watches") }}<ly-icon cls="chev" name="down" />
           </button>
-          <router-link :to="brandsTo">{{ t("vino.hdr.brands", "Brands") }}</router-link>
+          <button v-if="brandList.length > 1" :aria-expanded="is('dd-brands') ? 'true' : 'false'" aria-controls="dd-brands" type="button" @click="toggle('dd-brands', $event)">
+            {{ t("vino.hdr.brands", "Brands") }}<ly-icon cls="chev" name="down" />
+          </button>
           <router-link :class="{ on: onJournal }" :to="blogTo">{{ t("ly.hdr.journal", "Journal") }}</router-link>
         </nav>
 
@@ -103,8 +105,8 @@
           <div v-if="brandList.length">
             <p class="vn-mh">{{ t("vino.mega.byBrand", "By brand") }}</p>
             <ul>
-              <li v-for="b in brandList.slice(0, 8)" :key="b.name"><router-link :to="searchTo(b.name)"><bdi>{{ b.name }}</bdi></router-link></li>
-              <li><router-link :to="brandsTo" class="all">{{ t("vino.mega.allBrands", "All brands") }}</router-link></li>
+              <li v-for="b in brandList.slice(0, 8)" :key="b.name"><router-link :to="brandTo(b.name)"><bdi>{{ b.name }}</bdi></router-link></li>
+              <li v-if="brandList.length > 1"><button class="all" type="button" @click="toggle('dd-brands', $event)">{{ t("vino.mega.allBrands", "All brands") }}</button></li>
             </ul>
           </div>
           <div>
@@ -133,6 +135,25 @@
             <b>{{ feat.title }}</b>
             <span class="vn-m">{{ money(priceView(shop, feat).now) }}</span>
           </router-link>
+        </div>
+      </div>
+
+      <!-- Brands: every brand as a tile (its newest watch, its name, how many watches), each opening that brand's watches. -->
+      <div id="dd-brands" :class="['vn-mega', 'vn-brm', { open: is('dd-brands') }]">
+        <div class="wrap vn-brm-in">
+          <div class="vn-brm-hd">
+            <p class="vn-mh">{{ t("vino.mega.byBrand", "By brand") }}</p>
+            <router-link :to="allTo" class="all">{{ t("vino.mega.all", "All watches") }}<ly-icon cls="flip-rtl" name="right" /></router-link>
+          </div>
+          <ul class="vn-brm-l">
+            <li v-for="b in brandList" :key="b.name">
+              <router-link :to="brandTo(b.name)">
+                <span class="vn-well"><img v-if="brandImg(b.name)" :src="brandImg(b.name)" alt="" loading="lazy" /></span>
+                <b><bdi>{{ b.name }}</bdi></b>
+                <span class="n">{{ t("vino.mega.brandN", { one: "{n} watch", other: "{n} watches" }, { n: b.n }) }}</span>
+              </router-link>
+            </li>
+          </ul>
         </div>
       </div>
 
@@ -311,7 +332,7 @@ import { openLine as openLineOf,
 } from "../ly";
 import { t } from "../../kalio/i18n/kalio-i18n";
 import { collectionPhoto } from "../ly-photos";
-import { brands, maxOff, movementLabel, movementOf, newest, trustLines } from "../vino/vn";
+import { brandOf, brands, maxOff, movementLabel, movementOf, newest, trustLines } from "../vino/vn";
 
 /* Words that say nothing about a pastry, left out of "Popular". */
 const STOP = new Set(["and", "with", "the", "of", "a", "an", "in", "on", "mini", "classic", "double", "cake", "cakes"]);
@@ -504,9 +525,7 @@ export default {
     feat() {
       return newest()[0] || null;
     },
-    brandsTo() {
-      return { path: '/', hash: '#brands' };
-    },
+
     newTo() {
       return { name: this.r.SHOP_PAGE, query: { sort: 'newest' } };
     },
@@ -601,6 +620,16 @@ export default {
       const list = inCat(c.id);
       if (!list.length) return "";
       return money(Math.min(...list.map((p) => priceView(this.shop, p).now)));
+    },
+    /* A brand's own watches: ?brand= (the listing keeps only that brand). */
+    brandTo(name) {
+      return { name: this.r.SHOP_PAGE, query: { brand: name } };
+    },
+    /* The brand's newest watch, as its tile's photo. */
+    brandImg(name) {
+      const p = newest().find((x) => brandOf(x) === name) || this.ly.products.find((x) => brandOf(x) === name);
+      /* the original photo: a product's 256 px copy does not always exist (one brand drew a broken image) */
+      return p ? productImage(p) : null;
     },
     thumbBig(p) {
       return productImage(p);

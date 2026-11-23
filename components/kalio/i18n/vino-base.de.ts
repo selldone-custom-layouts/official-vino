@@ -1505,6 +1505,11 @@ const de: Record<string, string> = {
   "ly.strip.ship": "Versand überallhin.",
   "ly.strip.shipFree": "Versand überallhin; kostenlos ab {amount} Bestellwert.",
   "ly.strip.within": "Lokaler Kurier im Umkreis von {km} km um den Shop.",
+  "ly.co.toPay": "Weiter zur Zahlung",
+  "ly.co.placeOrder": "Bestellung aufgeben",
+  "ly.ls.theBrand": "Die Marke",
+  "ly.ls.brandLead.one": "{n} Uhr von {brand}, mit Preis und Spezifikation.",
+  "ly.ls.brandLead.other": "{n} Uhren von {brand}, jede mit Preis und Spezifikation.",
 };
 
 export default de;

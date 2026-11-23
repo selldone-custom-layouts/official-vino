@@ -94,6 +94,20 @@ html .ly .vn-hdr .count { position: absolute; top: 4px; inset-inline-end: 2px; m
 .vn-well { display: block; aspect-ratio: 1; background: var(--ly-bg); border-radius: var(--ly-r-in); overflow: hidden; padding: 9%; margin-bottom: 8px; }
 .vn-well img { width: 100%; height: 100%; object-fit: contain; }
 @media (max-width: 900px) { .vn-mega-in { grid-template-columns: 1fr 1fr; gap: 20px; max-height: 70vh; overflow: auto; } .vn-mfeat { display: none; } }
+.vn-mega li button.all { display: block; padding: 5px 0; font-size: 14px; line-height: 1.4; background: none; text-align: start; }
+.vn-mega li button.all:hover { color: var(--ly-act-deep); }
+/* the brands menu: every brand as a tile (its newest watch on the plate, the name, how many) */
+.vn-brm-in { padding-top: 24px; padding-bottom: 28px; }
+.vn-brm-hd { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+.vn-brm-hd .vn-mh { margin-bottom: 0; }
+.vn-brm-hd .all { display: inline-flex; align-items: center; gap: 4px; font-size: 13px; }
+.vn-brm-l { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+.vn-mega .vn-brm-l a { display: flex; flex-direction: column; gap: 2px; padding: 10px 10px 12px; border-radius: var(--ly-r-pn); background: var(--ly-band); color: var(--ly-ink); }
+.vn-mega .vn-brm-l a:hover { color: var(--ly-act-text); }
+.vn-brm-l .vn-well { margin-bottom: 8px; padding: 12%; }
+.vn-brm-l b { font-family: var(--ly-serif); font-weight: var(--ly-h-weight); font-size: 18px; line-height: 1.2; }
+.vn-brm-l .n { font-size: 12.5px; color: var(--vn-ink2); }
+@media (max-width: 900px) { .vn-brm-in { max-height: 70vh; overflow: auto; } .vn-brm-l { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 /* ───────── newsletter + footer ───────── */
 .vn-news { background: var(--ly-band); padding: 64px 0; }

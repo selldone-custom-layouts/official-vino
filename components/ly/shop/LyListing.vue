@@ -14,7 +14,7 @@
   - the grid of cards; a change dims the cards in place with "Updating
     results…", then the new ones fade up in steps (no motion when the
     visitor asks for less); fewer results than columns keep the card width
-    and centre the row;
+    and start the row (never centred);
   - deals: the biggest saving today as a cocoa band with its round "Save";
   - search: the collections it found as tabs, posts from the journal, and a
     calm card with suggestions when nothing matches;
@@ -36,6 +36,7 @@
     </ly-pt>
     <ly-pt v-else-if="kind === 'category'" :crumbs="[{ label: catTitle(cat) || categoryName }]" :cuts="catPhoto ? [] : catCuts" :eyebrow="t('ly.ls.theCollection', 'The collection')" :lead="catLead" :photo="catPhoto" :title="catTitle(cat) || ''" cls="compact" />
     <ly-pt v-else-if="kind === 'deals'" :crumbs="[{ label: t('ly.ls.deals', 'Deals') }]" :lead="dealsLead" :title="t('ly.ls.deals', 'Deals')" art="macaron" art2="cake" cls="compact" />
+    <ly-pt v-else-if="brandQ" :crumbs="[{ label: brandQ }]" :eyebrow="t('ly.ls.theBrand', 'The brand')" :lead="brandLead" :title="brandQ" art="croissant" art2="macaron" cls="compact" />
     <ly-pt v-else :crumbs="[{ label: t('ly.ls.all', 'Every pastry') }]" :lead="allLead" :title="t('ly.ls.all', 'Every pastry')" art="croissant" art2="macaron" cls="compact" />
 
     <section :aria-label="sectionLabel" class="sec-s">
@@ -306,7 +307,15 @@ export default {
       if (this.kind === "category") return this.cat ? inCat(this.cat.id) : all.filter((p) => String(p.category_id) === String(this.categoryName));
       if (this.kind === "search") return this.matches(this.search);
       if (this.kind === "deals") return all.filter((p) => this.pv(p).save > 0);
+      /* ?brand= (the header's Brands menu, the home's brand tiles): only that brand */
+      if (this.brandQ) return all.filter((p) => String(p.brand || "").trim() === this.brandQ);
       return all;
+    },
+    brandQ() {
+      return this.kind === "all" ? String(this.$route?.query?.brand || "").trim() : "";
+    },
+    brandLead() {
+      return t("ly.ls.brandLead", { one: "{n} piece from {brand}.", other: "{n} pieces from {brand}." }, { n: this.base.length, brand: this.brandQ });
     },
     prices() {
       return this.base.map((p) => this.pv(p).now);
@@ -616,7 +625,7 @@ export default {
         if (m[2]) this.max = Math.min(this.hi, Math.max(this.min, Number(m[2])));
       }
     },
-    /* Fewer results than columns: the cards keep their width and the row is centred. */
+    /* Fewer results than columns: the cards keep their width and start the row (the owner, 23 Nov 2026: a lone result sat in the middle). */
     fit() {
       const g = this.$refs.grid;
       if (!g) return;
@@ -624,7 +633,7 @@ export default {
       const cs = getComputedStyle(g);
       const cols = parseInt(cs.getPropertyValue("--ly-cols"), 10) || 5;
       const gap = parseFloat(cs.columnGap) || 0;
-      this.fitStyle = n && n < cols ? { gridTemplateColumns: `repeat(${n}, calc((100% - ${(cols - 1) * gap}px) / ${cols}))`, justifyContent: "center" } : null;
+      this.fitStyle = n && n < cols ? { gridTemplateColumns: `repeat(${n}, calc((100% - ${(cols - 1) * gap}px) / ${cols}))`, justifyContent: "start" } : null;
     },
     /* Dim, say "Updating results…", then draw the new list fading up. */
     update() {

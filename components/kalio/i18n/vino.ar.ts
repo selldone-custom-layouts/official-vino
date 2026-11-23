@@ -81,6 +81,12 @@ const ar: Record<string, string> = {
   "vino.trust.worldFee": "شحن بسعر ثابت {fee} إلى أي عنوان",
   "vino.trust.worldFree": "شحن مجاني إلى أي عنوان",
   "vino.pd.noDesc": "المواصفات الكاملة في «معلومات إضافية».",
+  "vino.mega.brandN.zero": "لا ساعات",
+  "vino.mega.brandN.one": "ساعة واحدة",
+  "vino.mega.brandN.two": "ساعتان",
+  "vino.mega.brandN.few": "{n} ساعات",
+  "vino.mega.brandN.many": "{n} ساعة",
+  "vino.mega.brandN.other": "{n} ساعة",
 };
 
 export default ar;

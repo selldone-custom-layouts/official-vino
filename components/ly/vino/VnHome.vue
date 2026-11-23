@@ -113,7 +113,7 @@
       <div class="wrap">
         <div class="vn-sh"><h2>{{ t("vino.home.byBrand", "Shop by brand") }}</h2></div>
         <div class="vn-br">
-          <router-link v-for="b in brandList" :key="b.name" :to="searchTo(b.name)"><b><bdi>{{ b.name }}</bdi></b><span>{{ t("vino.home.shopNow", "Shop now") }}</span></router-link>
+          <router-link v-for="b in brandList" :key="b.name" :to="brandTo(b.name)"><b><bdi>{{ b.name }}</bdi></b><span>{{ t("vino.home.shopNow", "Shop now") }}</span></router-link>
         </div>
       </div>
     </section>
@@ -265,6 +265,10 @@ export default {
     },
     searchTo(q) {
       return { name: this.r.SHOP_PAGE, query: { search: q } };
+    },
+    /* A brand's own watches (the listing keeps only that brand). */
+    brandTo(name) {
+      return { name: this.r.SHOP_PAGE, query: { brand: name } };
     },
   },
 };

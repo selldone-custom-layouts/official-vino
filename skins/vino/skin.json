@@ -341,7 +341,9 @@
       "ly.strip.contact": "Contact the shop",
       "ly.strip.findCounter": "Find the shop",
       "ly.strip.pickupT": "Collect at the shop",
-      "ly.strip.within": "Local courier within {km} km of the shop."
+      "ly.strip.within": "Local courier within {km} km of the shop.",
+      "ly.ls.brandLead.one": "{n} watch from {brand}, with its price and specification.",
+      "ly.ls.brandLead.other": "{n} watches from {brand}, every one with its price and specification."
     }
   },
   "status": "live"

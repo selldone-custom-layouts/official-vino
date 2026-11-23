@@ -81,6 +81,8 @@ const fr: Record<string, string> = {
   "vino.trust.worldFee": "Livraison à {fee} vers toute adresse",
   "vino.trust.worldFree": "Livraison gratuite vers toute adresse",
   "vino.pd.noDesc": "La fiche technique complète se trouve dans « Informations complémentaires ».",
+  "vino.mega.brandN.one": "{n} montre",
+  "vino.mega.brandN.other": "{n} montres",
 };
 
 export default fr;

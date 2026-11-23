@@ -1550,6 +1550,11 @@ const es: Record<string, string> = {
   "ly.strip.ship": "Envíos a todas partes.",
   "ly.strip.shipFree": "Envíos a todas partes; gratis en pedidos de más de {amount}.",
   "ly.strip.within": "Repartidor local a menos de {km} km de la tienda.",
+  "ly.co.toPay": "Continuar al pago",
+  "ly.co.placeOrder": "Realizar pedido",
+  "ly.ls.theBrand": "La marca",
+  "ly.ls.brandLead.one": "{n} reloj de {brand}, con su precio y especificaciones.",
+  "ly.ls.brandLead.other": "{n} relojes de {brand}, cada uno con su precio y especificaciones.",
 };
 
 export default es;

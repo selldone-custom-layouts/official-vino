@@ -883,6 +883,15 @@ const ar: Record<string, string> = {
   "ly.strip.ship": "نشحن إلى أي مكان.",
   "ly.strip.shipFree": "نشحن إلى أي مكان؛ مجانًا للطلبات فوق {amount}.",
   "ly.strip.within": "توصيل محلي ضمن {km} كم من المخبز.",
+  "ly.co.toPay": "المتابعة إلى الدفع",
+  "ly.co.placeOrder": "تأكيد الطلب",
+  "ly.ls.theBrand": "العلامة",
+  "ly.ls.brandLead.zero": "{brand}: لا قطع.",
+  "ly.ls.brandLead.one": "{brand}: قطعة واحدة.",
+  "ly.ls.brandLead.two": "{brand}: قطعتان.",
+  "ly.ls.brandLead.few": "{brand}: {n} قطع.",
+  "ly.ls.brandLead.many": "{brand}: {n} قطعة.",
+  "ly.ls.brandLead.other": "{brand}: {n} قطعة.",
 };
 
 export default ar;
